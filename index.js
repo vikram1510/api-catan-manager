@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 
 const bodyParser = require('body-parser')
 
-const dbURI = 'mongodb://localhost/catan'
+const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/catan'
 
 const players = require('./controllers/players')
 
