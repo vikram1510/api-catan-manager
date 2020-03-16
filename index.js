@@ -1,3 +1,4 @@
+
 const express = require('express')
 
 const app = express()
@@ -7,6 +8,8 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/catan'
+
+const port = process.env.PORT || 3000
 
 const players = require('./controllers/players')
 
@@ -25,4 +28,4 @@ app.get('/', (_, res) => {
   res.send('hello')
 })
 
-app.listen(3000, () => console.log('listening'))
+app.listen(port, () => console.log(`listening on ${port}`))
