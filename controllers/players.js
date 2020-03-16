@@ -21,4 +21,12 @@ function update(req, res){
     .catch(err => res.status(400).json(err))
 }
 
-module.exports = { create, index, update }
+function remove(req, res){
+  Player
+    .findById(req.params.id)
+    .then(player => player.remove())
+    .then(() => res.sendStatus(204))
+    .catch(err => res.status(400).json(err))
+}
+
+module.exports = { create, index, update, remove }

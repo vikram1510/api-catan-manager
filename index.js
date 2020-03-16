@@ -24,6 +24,8 @@ app.post('/players', players.create)
 
 app.put('/players/:id', players.update)
 
+app.delete('/players/:id', players.remove)
+
 app.get('/', (_, res) => {
   res.send('hello')
 })
