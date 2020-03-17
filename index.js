@@ -3,6 +3,8 @@ const express = require('express')
 
 const app = express()
 
+const cors = require('cors')
+
 const mongoose = require('mongoose')
 
 const bodyParser = require('body-parser')
@@ -15,6 +17,8 @@ const players = require('./controllers/players')
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => console.log('Mongo is connected'))
+
+app.use(cors({ origin: '*' }))
 
 app.use(bodyParser.json())
 
