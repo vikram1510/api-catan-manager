@@ -6,8 +6,10 @@ function create(req, res){
     .catch(err => res.status(400).json(err))
 }
 
-function index(_, res){
-  Player.find()
+function index(req, res){
+  const findPlayer = req.query.name ? Player.find({ name }) : Player.find()
+  
+  findPlayer
     .then(players => res.json(players))
     .catch(err => res.status(400).json(err))
 }
