@@ -30,6 +30,8 @@ app.put('/players/:id', players.update)
 
 app.delete('/players/:id', players.remove)
 
+app.get('/players/:id', players.show)
+
 app.get('/', (_, res) => {
   res.send('hello')
 })
