@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 
 const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/catan'
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3030
 
 const players = require('./controllers/players')
 
@@ -29,6 +29,8 @@ app.post('/players', players.create)
 app.put('/players/:id', players.update)
 
 app.delete('/players/:id', players.remove)
+
+app.get('/players/:id', players.show)
 
 app.get('/', (_, res) => {
   res.send('hello')
