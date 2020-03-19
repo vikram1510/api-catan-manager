@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const playerSchema = new mongoose.Schema({
-  name: { type: String, required: true, maxlength: 35 },
+  name: { type: String, required: true, maxlength: 35, unique: true },
   brick: { type: Number, required: true, default: 0 },
   rock: { type: Number, required: true, default: 0 },
   wood: { type: Number, required: true, default: 0 },
@@ -11,5 +12,7 @@ const playerSchema = new mongoose.Schema({
 { 
   timestamps: true 
 })
+playerSchema.plugin(uniqueValidator)
+
 
 module.exports = mongoose.model('Player', playerSchema)
