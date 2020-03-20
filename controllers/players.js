@@ -7,7 +7,7 @@ function create(req, res){
 }
 
 function index(req, res){
-  const findPlayer = req.query.name ? Player.find({ name }) : Player.find()
+  const findPlayer = req.query.name ? Player.find({ name: req.query.name }) : Player.find()
   
   findPlayer
     .then(players => res.json(players))
