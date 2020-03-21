@@ -7,7 +7,8 @@ function create(req, res){
 }
 
 function index(req, res){
-  const findPlayer = req.query.name ? Player.find({ name: req.query.name }) : Player.find()
+  const { name } =  req.query
+  const findPlayer = name ? Player.find({ name }) : Player.find()
   
   findPlayer
     .then(players => res.json(players))
@@ -33,8 +34,8 @@ function remove(req, res){
 
 function show(req, res) {
   Player.findById(req.params.id)
-  .then(player => res.json(player))
-  .catch(err => res.status(404).json(err))
+    .then(player => res.json(player))
+    .catch(err => res.status(404).json(err))
 }
 
 module.exports = { create, index, update, remove, show }
