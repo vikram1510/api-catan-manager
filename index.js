@@ -15,12 +15,16 @@ const port = process.env.PORT || 3030
 
 const players = require('./controllers/players')
 
+const history = require('./controllers/history')
+
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => console.log('Mongo is connected'))
 
 app.use(cors({ origin: '*' }))
 
 app.use(bodyParser.json())
+
+// Players
 
 app.get('/players', players.index)
 
@@ -31,6 +35,16 @@ app.put('/players/:id', players.update)
 app.delete('/players/:id', players.remove)
 
 app.get('/players/:id', players.show)
+
+// History
+
+app.get('/history', history.index)
+
+app.post('/history', history.create)
+
+app.delete('/history/:id', players.remove)
+
+// -----
 
 app.get('/', (_, res) => {
   res.send('hello')
