@@ -36,6 +36,8 @@ app.delete('/players/:id', players.remove)
 
 app.get('/players/:id', players.show)
 
+app.post('/players/transaction', players.transaction)
+
 // History
 
 app.get('/history', history.index)

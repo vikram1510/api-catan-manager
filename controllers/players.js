@@ -38,4 +38,26 @@ function show(req, res) {
     .catch(err => res.status(404).json(err))
 }
 
-module.exports = { create, index, update, remove, show }
+async function transaction(req, res){
+
+  const { amounts, fromId, toId } = req.body
+
+  await Player.findByIdAndUpdate(fromId,{ $inc: { ...amounts }} )
+  // const toPlayer = await Player.findById(toId)
+
+  // Object.keys(amounts).forEach((resource, amount) => {
+
+
+
+  //   fromPlayer.resource
+  //   toPlayer[resource] += amount
+  // })
+
+  // fromPlayer.save()
+  // toPlayer.save()
+
+  return res.json({message: 'Transaction successfull'})
+
+}
+
+module.exports = { create, index, update, remove, show, transaction }
