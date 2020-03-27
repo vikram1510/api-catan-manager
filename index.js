@@ -38,6 +38,8 @@ app.get('/players/:id', players.show)
 
 app.post('/players/transaction', players.transaction)
 
+app.post('/players/bank', players.bank)
+
 // History
 
 app.get('/history', history.index)

@@ -42,22 +42,26 @@ async function transaction(req, res){
 
   const { amounts, fromId, toId } = req.body
 
-  await Player.findByIdAndUpdate(fromId,{ $inc: { ...amounts }} )
-  // const toPlayer = await Player.findById(toId)
+  const decAmounts = Object.keys(amounts).reduce((final, resource) => {
+    final[resource] = amounts[resource] * -1
+    return final
+  }, {})
 
-  // Object.keys(amounts).forEach((resource, amount) => {
-
-
-
-  //   fromPlayer.resource
-  //   toPlayer[resource] += amount
-  // })
-
-  // fromPlayer.save()
-  // toPlayer.save()
-
-  return res.json({message: 'Transaction successfull'})
+  await Player.findOneAndUpdate({ _id: fromId },{ $inc: { ...amounts } } )
+  await Player.findOneAndUpdate({ _id: toId },{ $inc: { ...decAmounts } } )
+ 
+  return res.json({ message: 'Transaction successfull' })
 
 }
 
-module.exports = { create, index, update, remove, show, transaction }
+async function bank(req, res){
+
+  const { playerId, amounts } = req.body
+
+  const updatedPlayer = await Player.findOneAndUpdate({ _id: playerId },{ $inc: { ...amounts } }, { new: true } )
+
+  res.json(updatedPlayer)
+
+}
+
+module.exports = { create, index, update, remove, show, transaction, bank }
