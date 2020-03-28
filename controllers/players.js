@@ -41,7 +41,6 @@ function show(req, res) {
 async function transaction(req, res){
 
   const { amounts, fromId, toId } = req.body
-  console.log(amounts, fromId, toId)
 
   const decAmounts = Object.keys(amounts).reduce((final, resource) => {
     final[resource] = amounts[resource] * -1
