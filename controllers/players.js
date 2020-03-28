@@ -47,8 +47,8 @@ async function transaction(req, res){
     return final
   }, {})
 
-  await Player.findOneAndUpdate({ _id: fromId },{ $inc: { ...amounts } } )
-  await Player.findOneAndUpdate({ _id: toId },{ $inc: { ...decAmounts } } )
+  await Player.findOneAndUpdate({ _id: fromId },{ $inc: { ...decAmounts } } )
+  await Player.findOneAndUpdate({ _id: toId },{ $inc: { ...amounts } } )
  
   return res.json({ message: 'Transaction successfull' })
 
