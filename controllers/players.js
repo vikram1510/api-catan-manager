@@ -41,6 +41,7 @@ function show(req, res) {
 async function transaction(req, res){
 
   const { amounts, fromId, toId } = req.body
+  console.log(amounts, fromId, toId)
 
   const decAmounts = Object.keys(amounts).reduce((final, resource) => {
     final[resource] = amounts[resource] * -1
@@ -49,7 +50,7 @@ async function transaction(req, res){
 
   await Player.findOneAndUpdate({ _id: fromId },{ $inc: { ...decAmounts } } )
   await Player.findOneAndUpdate({ _id: toId },{ $inc: { ...amounts } } )
- 
+  
   return res.json({ message: 'Transaction successfull' })
 
 }

@@ -17,7 +17,7 @@ const players = require('./controllers/players')
 
 const history = require('./controllers/history')
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false },
   () => console.log('Mongo is connected'))
 
 app.use(cors({ origin: '*' }))
