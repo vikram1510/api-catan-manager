@@ -46,7 +46,7 @@ app.get('/history', history.index)
 
 app.post('/history', history.create)
 
-app.delete('/history/:id', players.remove)
+app.delete('/history', history.remove)
 
 // -----
 

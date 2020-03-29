@@ -1,24 +1,22 @@
-const Player = require('../models/History')
+const History = require('../models/History')
 
 function create(req, res){
-  Player.create(req.body)
-    .then(player => res.json(player))
+  History.create(req.body)
+    .then(event => res.json(event))
     .catch(err => res.status(400).json(err))
 }
 
 function index(req, res){
   const { name } =  req.query
-  const findPlayer = name ? Player.find({ name }) : Player.find()
+  const findEvent = name ? History.find({ name }) : History.find()
   
-  findPlayer
-    .then(players => res.json(players))
+  findEvent
+    .then(events => res.json(events))
     .catch(err => res.status(400).json(err))
 }
 
 function remove(req, res){
-  Player
-    .findById(req.params.id)
-    .then(player => player.remove())
+  History.deleteMany({})
     .then(() => res.sendStatus(204))
     .catch(err => res.status(400).json(err))
 }
