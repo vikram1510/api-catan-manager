@@ -4,7 +4,7 @@ function create(req, res){
   Player.create(req.body)
     .then(player => res.json(player))
     .catch(err => res.status(400).json(err))
-}git 
+} 
 
 function index(req, res){
   const { name } =  req.query
