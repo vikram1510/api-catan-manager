@@ -7,10 +7,9 @@ function create(req, res){
 }
 
 function index(req, res){
-  const { name } =  req.query
-  const findEvent = name ? History.find({ name }) : History.find()
+
   
-  findEvent
+  History.find().sort(('-createdAt'))
     .then(events => res.json(events))
     .catch(err => res.status(400).json(err))
 }
