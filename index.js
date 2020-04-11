@@ -17,6 +17,8 @@ const players = require('./controllers/players')
 
 const history = require('./controllers/history')
 
+const events = require('./controllers/events')
+
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false },
   () => console.log('Mongo is connected'))
 
@@ -49,6 +51,14 @@ app.post('/history', history.create)
 app.delete('/history', history.remove)
 
 // -----
+
+// Events
+
+app.get('/events', events.index)
+
+app.post('/events', events.create)
+
+app.delete('/events', events.remove)
 
 app.get('/', (_, res) => {
   res.send('hello')
