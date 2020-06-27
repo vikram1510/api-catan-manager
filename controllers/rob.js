@@ -1,4 +1,4 @@
-const sheets = require('../sheets/sheetsAPI')
+const sheets = require('../sheets/googleSheets')
 
 function append(req, res) {
   console.log(req.body)
