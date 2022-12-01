@@ -1,73 +1,82 @@
-const express = require('express')
+const express = require("express");
 
-const app = express()
+const app = express();
 
-const cors = require('cors')
+const cors = require("cors");
 
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost/catan'
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost/catan";
 
-const port = process.env.PORT || 3030
+const port = process.env.PORT || 3030;
 
-const players = require('./controllers/players')
+const players = require("./controllers/players");
 
-const history = require('./controllers/history')
+const history = require("./controllers/history");
 
-const events = require('./controllers/events')
-const rob = require('./controllers/rob')
+const events = require("./controllers/events");
+const rob = require("./controllers/rob");
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false },
-  () => console.log('Mongo is connected'))
+mongoose.connect(
+  dbURI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+  () => console.log("Mongo is connected")
+);
 
-app.use(cors({ origin: '*' }))
+app.use(cors({ origin: "*" }));
 
-app.use(bodyParser.json())
+console.log("lol");
+app.use(bodyParser.json());
 
 // Players
 
-app.get('/players', players.index)
+app.get("/players", players.index);
 
-app.post('/players', players.create)
+app.post("/players", players.create);
 
-app.put('/players/:id', players.update)
+app.put("/players/:id", players.update);
 
-app.delete('/players/:id', players.remove)
+app.delete("/players/:id", players.remove);
 
-app.get('/players/:id', players.show)
+app.get("/players/:id", players.show);
 
-app.post('/players/transaction', players.transaction)
+app.post("/players/transaction", players.transaction);
 
-app.post('/players/bank', players.bank)
+app.post("/players/bank", players.bank);
 
 // History
 
-app.get('/history', history.index)
+app.get("/history", history.index);
 
-app.post('/history', history.create)
+app.post("/history", history.create);
 
-app.delete('/history', history.remove)
+app.delete("/history", history.remove);
 
 // -----
 
 // Events
 
-app.get('/events', events.index)
+app.get("/events", events.index);
 
-app.post('/events', events.create)
+app.post("/events", events.create);
 
-app.delete('/events', events.remove)
+app.delete("/events", events.remove);
 
 // -----
 
 // Sheets
 
-app.post('/rob', rob.append)
+app.post("/rob", rob.append);
 
-app.get('/', (_, res) => {
-  res.send('hello')
-})
+app.get("/", (_, res) => {
+  res.send("hello");
+});
 
-app.listen(port, () => console.log(`listening on ${port}`))
+app.listen(port, () => console.log(`listening on ${port}`));
