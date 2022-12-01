@@ -17,7 +17,8 @@ function index(req, res) {
       console.log("Found players", players);
       return res.json(players);
     })
-    .catch((err) => res.status(400).json(err));
+    .catch(console.log);
+  // .catch((err) => res.status(400).json(err));
 }
 
 function update(req, res) {
