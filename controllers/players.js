@@ -7,10 +7,10 @@ function create(req, res) {
 }
 
 function index(req, res) {
-  console.log("/players", req);
+  console.log("/players");
   const { name } = req.query;
   const findPlayer = name ? Player.find({ name }) : Player.find();
-  console.log("player from db", findPlayer);
+  console.log("player from db");
 
   findPlayer
     .then((players) => {
