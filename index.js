@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 
+console.log("hello", process.env.MONGODB_URI);
+
 const dbURI = process.env.MONGODB_URI || "mongodb://localhost/catan";
 
 const port = process.env.PORT || 3030;
@@ -27,7 +29,7 @@ mongoose.connect(
     useCreateIndex: true,
     useFindAndModify: false,
   },
-  () => console.log("Mongo is connected")
+  (x) => console.log("Mongo is connected", x)
 );
 
 app.use(cors({ origin: "*" }));
